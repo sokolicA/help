@@ -7,7 +7,7 @@ winget install -e --id Microsoft.VisualStudioCode
 
 ### 0.2 Install MinGW64
 
-View guide to install
+View Msys2 and MinGW64 guide to install,
 
 ## 1. Install Microsoft C/C++ Extension
 
