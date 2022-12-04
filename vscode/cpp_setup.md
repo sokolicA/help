@@ -153,3 +153,12 @@ i) Step in: Will execute the current line and step into any other functions and 
 ii) Step over: Will execute the current line without going into details of every substep and will go to the next line.
 
 Stop debugging by clicking the red circle or by clicking step over until the program ends.
+
+## Use a project manager
+
+Install the _Project Manager_ extension.
+
+See [this link](https://github.com/alefragnani/vscode-project-manager/#project-manager) for more information.
+
+But basically open a new folder, add the preset files and save the folder as a project by opening the Project Manager extension.
+
