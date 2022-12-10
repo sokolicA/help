@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.189">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Quarto Presentations</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<script src="quarto_presentations_files/libs/clipboard/clipboard.min.js"></script>
+<script src="quarto_presentations_files/libs/quarto-html/quarto.js"></script>
+<script src="quarto_presentations_files/libs/quarto-html/popper.min.js"></script>
+<script src="quarto_presentations_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="quarto_presentations_files/libs/quarto-html/anchor.min.js"></script>
+<link href="quarto_presentations_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="quarto_presentations_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="quarto_presentations_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="quarto_presentations_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="quarto_presentations_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+</head>
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title">Quarto Presentations</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">10. 12. 2022</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+</header><section id="general" class="level2"><h2 class="anchored" data-anchor-id="general">General</h2>
+<p>STAYING UP TO DATE: QUARTO NEWS on download page release notes</p>
+<p><code>ctrl + space</code> to see yaml or hashpipe (#|) options.</p>
+<section id="report-date" class="level3"><h3 class="anchored" data-anchor-id="report-date">Report date</h3>
+<p><a href="https://quarto.org/docs/reference/dates.html">Documentation</a></p>
+<pre><code>---
+date: today
+date-format: "D. M. YYYY"
+---</code></pre>
+</section></section><section id="parameters" class="level2"><h2 class="anchored" data-anchor-id="parameters">Parameters</h2>
+<section id="python" class="level3"><h3 class="anchored" data-anchor-id="python">Python</h3>
+<p>Python runs on the <code>reticulate</code> package.</p>
+<p>Jupyter engine uses <a href="https://github.com/nteract/papermill">Papermill</a> style parameters meaning that the cell is tagged “parameters”. Parameters are first class objects - In the example below we can access <code>alpha</code> as an object in python.</p>
+<pre><code>#! tags: [parameters]
+
+alpha=0.1
+beta=0.1</code></pre>
+</section><section id="r" class="level3"><h3 class="anchored" data-anchor-id="r">R</h3>
+<p>YAML - Yet Another Markup Language</p>
+<p><code>knitr</code> engine - Assign values in YAML. Parameters are then saved in a list called <code>params</code></p>
+<p>They can be accessed with:</p>
+<ul>
+<li><code>params$alpha</code></li>
+<li><code>params$beta</code></li>
+</ul></section><section id="render-with-parameters" class="level3"><h3 class="anchored" data-anchor-id="render-with-parameters">Render with parameters:</h3>
+<p>With the Command Line Interface:</p>
+<p><code>quarto render report.qmd -P alpha:0.2 -P beta:0.2 --output report.html</code></p>
+<p>Note: Parameters must be set in the document before passing them to the render command.</p>
+<p><code>quarto render report.qmd --to html</code> <code>quarto render report.qmd --to pdf</code></p>
+</section></section><section id="including-files" class="level2"><h2 class="anchored" data-anchor-id="including-files">Including files</h2>
+<p>We can also include custom CSS, JavaScript, Html files. <a href="https://quarto.org/docs/reference/formats/html.html#includes">See here</a></p>
+<p>Example:</p>
+<p>denotes that the value is a multi-line string.</p>
+<pre><code>---
+include-in-header: 
+  - text: |
+    &lt;style&gt; class {color: red;} &lt;/style&gt;
+    &lt;link rel = "stylesheet" href = "..."/&gt;
+  - file: main.js
+  - style.css
+---</code></pre>
+</section><section id="unified-syntax" class="level2"><h2 class="anchored" data-anchor-id="unified-syntax">Unified syntax</h2>
+Unified syntax for multiple output formats. Using pandoc syntax allows to easily convert to different formats. That is one reason to prefer the use of <strong>:::</strong> to denote blocks over the html
+<div>
+<p>syntax.</p>
+<p><a href="https://quarto.org/docs/authoring/markdown-basics.html">Markdown basics</a></p>
+<section id="pandoc-fenced-divs" class="level3"><h3 class="anchored" data-anchor-id="pandoc-fenced-divs">Pandoc fenced divs</h3>
+<p>Starts and ends with equal number of : (at least 3).</p>
+<p>Example:</p>
+<p>Class is used to style the block inside. The block’s id is set to <code>id</code>.</p>
+<pre><code>::: {#id class}
+
+Block to modify with class
+
+:::</code></pre>
+</section><section id="bracketed-spans" class="level3"><h3 class="anchored" data-anchor-id="bracketed-spans">Bracketed spans</h3>
+<p>Inline styling.</p>
+<p><code>[This is *some text*]{.class key="val"}˙</code></p>
+<p><span class="class" data-key="val">This is <em>some text</em></span></p>
+</section><section id="footnotes" class="level3"><h3 class="anchored" data-anchor-id="footnotes">Footnotes</h3>
+<p><code>This is some text^[This is a footnote]</code></p>
+<p>This is some text<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>in format html: citations-hover:true in format html: footnotes-hover:true</p>
+</section><section id="other-predefined-attributes" class="level3"><h3 class="anchored" data-anchor-id="other-predefined-attributes">Other predefined attributes</h3>
+<p>.panel-tabset (HTML ONLY) .fragment (REVEALJS ONLY)</p>
+</section><section id="figures-layouts" class="level3"><h3 class="anchored" data-anchor-id="figures-layouts">Figures, Layouts</h3>
+<p><a href="https://quarto.org/docs/authoring/figures.html">Link</a></p>
+<ul>
+<li><code>layout-ncol=2</code></li>
+<li><code>layout-nrow=2</code></li>
+<li>
+<code>layout="[[30,70], [100]]"</code> (two rows, first row 2 divs with flex-basis 30-70 and second row with one div with 100 flex basis)</li>
+</ul>
+<p>Below is an example using <code>:::{layout-ncol=2}</code> .</p>
+<div id="id" class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p>left col</p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p>right col</p>
+</div>
+</div>
+</div>
+<p>And of using <code>:::{layout="[[30,70], [100]]"}</code> .</p>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 30.0%;justify-content: center;">
+<p>top row-left col</p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 70.0%;justify-content: center;">
+<p>top row-right col</p>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<p>Bottom row</p>
+</div>
+</div>
+</div>
+</section><section id="code" class="level2"><h2 class="anchored" data-anchor-id="code">Code</h2>
+<ul>
+<li>Hide code:</li>
+</ul>
+<pre><code>---
+execute:
+  echo: false
+---</code></pre>
+<ul>
+<li>Fold code:</li>
+</ul>
+<pre><code>---
+html:
+  code-fold:true
+  code-summary:"text"
+---</code></pre>
+<p>Or using hashpipe inside a specific chunk:</p>
+<pre><code>#| code-fold: true
+#| code-summary: "View source code"
+#| fig-align: "center"
+
+plot(1:50, 1:50)</code></pre>
+<div class="cell" data-layout-align="center">
+<details><summary>View source code</summary><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">50</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">50</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="quarto_presentations_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>-Code tools:</p>
+<pre><code>---
+html:
+  code-tools: 
+    source: true
+    toggle: false
+    caption: none 
+---</code></pre>
+<ul>
+<li>Code linking</li>
+</ul>
+<p><code>downlit</code> package for linking source code functions to documentation. <code>#! code-link: true</code>?</p>
+<pre><code>---
+html:
+  code-link: true
+---</code></pre>
+<div class="cell">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">3</span></span>
+<span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fl">2</span></span>
+<span><span class="va">z</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">*</span> <span class="va">y</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">50</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">50</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="quarto_presentations_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<ul>
+<li>Code line numbers:</li>
+</ul>
+<pre><code>#| code-line-numbers: true
+x &lt;- 3
+y &lt;- 2
+z &lt;- x * y
+# ....s</code></pre>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>x <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a>y <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb13-3"><a href="#cb13-3"></a>z <span class="ot">&lt;-</span> x <span class="sc">*</span> y</span>
+<span id="cb13-4"><a href="#cb13-4"></a><span class="co"># ....s</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="callout-blocks" class="level2"><h2 class="anchored" data-anchor-id="callout-blocks">Callout blocks</h2>
+<p><a href="https://quarto.org/docs/authoring/callouts.html">Documentation</a></p>
+<pre><code>::: {.callout-note}
+Note that there are five types of callouts, including:
+`note`, `warning`, `important`, `tip`, and `caution`.
+:::</code></pre>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Note that there are five types of callouts, including: <code>note</code>, <code>warning</code>, <code>important</code>, <code>tip</code>, and <code>caution</code>.</p>
+</div>
+</div>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Tip With Caption
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This is an example of a callout with a caption.</p>
+</div>
+</div>
+<div class="callout-caution callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Expand To Learn About Collapse
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>This is an example of a ‘folded’ caution callout that can be expanded by the user. You can use <code>collapse="true"</code> to collapse it by default or <code>collapse="false"</code> to make a collapsible callout that is expanded by default.</p>
+</div>
+</div>
+</div>
+</section><section id="aesthetics" class="level2"><h2 class="anchored" data-anchor-id="aesthetics">Aesthetics</h2>
+<p>Quarto uses the bootstrap CSS library with 25 themes from bootswatch as default. You can add cusom css, scss, sass files:</p>
+<pre><code>---
+format:
+  html:
+    theme: [default, custom.scss]
+---</code></pre>
+<section id="emojis" class="level3"><h3 class="anchored" data-anchor-id="emojis">Emojis</h3>
+</section></section><section id="reavealjs" class="level1"><h1>REAVEALJS</h1>
+<pre><code>---
+format:
+  revealjs
+---</code></pre>
+<section id="tips" class="level2"><h2 class="anchored" data-anchor-id="tips">Tips</h2>
+<p>-Alt+click to zoom in to a section</p>
+<ul>
+<li><p>alt + + to zoom ?</p></li>
+<li><p>Use {.fragment} to incrementally add content</p></li>
+<li><p>Show the code first and then show the output as you move</p></li>
+</ul>
+<p><code>#| output-location:column-fragment</code></p>
+<ul>
+<li>Use level-2 headers <code>##</code> to define slides</li>
+</ul></section><section id="lists" class="level2"><h2 class="anchored" data-anchor-id="lists">Lists</h2>
+<ul>
+<li>Incremental lists</li>
+</ul>
+<pre><code>:::{.incremental}
+-
+-
+:::</code></pre>
+<ul>
+<li>Non-incremental lists</li>
+</ul>
+<pre><code>:::{.nonincremental}
+-
+-
+:::</code></pre>
+</section><section id="highlight-code-line-number" class="level2"><h2 class="anchored" data-anchor-id="highlight-code-line-number">Highlight code line number</h2>
+<pre><code>#| code-line-numbers: "1, 3-4"
+x &lt;- 3
+y &lt;- 2
+z &lt;- x * y
+# ....s</code></pre>
+</section><section id="layout" class="level2"><h2 class="anchored" data-anchor-id="layout">Layout</h2>
+<section id="multiple-columns" class="level3"><h3 class="anchored" data-anchor-id="multiple-columns">Multiple columns</h3>
+<pre><code>::::{.columns}
+
+:::{.column .fragment}
+One Column
+:::
+
+:::{.column .fragment}
+Another Column
+:::
+::::</code></pre>
+<div class="columns">
+<div class="column fragment">
+<p>One Column</p>
+</div>
+<div class="column fragment">
+<p>Another Column</p>
+</div>
+</div>
+</section><section id="absolute-positioning" class="level3"><h3 class="anchored" data-anchor-id="absolute-positioning">Absolute positioning</h3>
+<p>Specify ditance from borders (left/right + top/bottom)</p>
+<pre><code>::: {.absolute top= right= bottom= left=}
+:::</code></pre>
+</section></section><section id="aesthetics-1" class="level2"><h2 class="anchored" data-anchor-id="aesthetics-1">Aesthetics</h2>
+<section id="themes" class="level3"><h3 class="anchored" data-anchor-id="themes">Themes</h3>
+<p><a href="https://quarto.org/docs/presentations/revealjs/themes.html">Themes</a></p>
+<p>Quarto RevealJS presentations come with 10 built-in themes.</p>
+<pre><code>---
+title: "Title"
+format:
+  revealjs:
+    theme: [beige, custom.scss]
+---</code></pre>
+</section><section id="logo" class="level3"><h3 class="anchored" data-anchor-id="logo">Logo</h3>
+<pre><code>format:
+  revealjs:
+    logo: "logo.png"</code></pre>
+</section><section id="footer" class="level3"><h3 class="anchored" data-anchor-id="footer">Footer</h3>
+<pre><code>format:
+  revealjs:
+    footer: "Some footer"</code></pre>
+<p>One-off footer (only displayed on the corresponding slide):</p>
+<pre><code>:::{footer}
+one off
+:::</code></pre>
+</section><section id="slide-backgrounds" class="level3"><h3 class="anchored" data-anchor-id="slide-backgrounds">Slide backgrounds</h3>
+<p>Changing the background colour will change the text color automatically.</p>
+<ul>
+<li>Background color:</li>
+</ul>
+<p><code>## Slide Background {background-color="black",...}</code></p>
+<ul>
+<li>Background images:</li>
+</ul>
+<p><code>## Slide Background {background-image=".." background-repeat="...",...}</code></p>
+<ul>
+<li>Background images:</li>
+</ul>
+<p><code>## Slide Background {background-video=".." background-repeat="...",...}</code></p>
+</section><section id="stacking-content" class="level3"><h3 class="anchored" data-anchor-id="stacking-content">Stacking content</h3>
+<p>Stack images on top of each other</p>
+<pre><code>:::{.r-stack .fragment}
+img1
+
+img2
+
+img3
+:::</code></pre>
+</section></section></section><!-- /main column --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+</section><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+<ol>
+<li id="fn1"><p>This is a footnote<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol></section></div></main>
+</div>
+
+
+</body></html>

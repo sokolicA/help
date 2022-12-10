@@ -2,6 +2,10 @@
 
 ## Installation
 
+## GUI
+
+From Bash run `git-gui`.
+
 ## Bash
 
 Copy: ctrl + insert

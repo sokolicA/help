@@ -1,0 +1,478 @@
+---
+title: "Quarto Presentations"
+format: 
+  html:
+    code-link: true
+date: today
+date-format: "D. M. YYYY"
+---
+
+## General
+
+STAYING UP TO DATE: QUARTO NEWS on download page release notes
+
+`ctrl + space` to see yaml or hashpipe (#|) options.
+
+
+### Report date
+
+[Documentation](https://quarto.org/docs/reference/dates.html)
+
+```
+---
+date: today
+date-format: "D. M. YYYY"
+---
+```
+
+## Parameters
+
+### Python
+
+Python runs on the `reticulate` package.
+
+Jupyter engine uses [Papermill](https://github.com/nteract/papermill) style parameters meaning that the cell is tagged "parameters".
+Parameters are first class objects - In the example below we can access `alpha` as an object in python.
+
+```
+#! tags: [parameters]
+
+alpha=0.1
+beta=0.1
+```
+
+
+### R
+
+YAML - Yet Another Markup Language
+
+`knitr` engine - Assign values in YAML. Parameters are then saved in a list called `params`
+---
+params:
+  alpha: 0.1
+  beta: 0.1
+---
+
+They can be accessed with:
+
+- `params$alpha`
+- `params$beta`
+
+
+
+### Render with parameters:
+
+With the Command Line Interface:
+
+`quarto render report.qmd -P alpha:0.2 -P beta:0.2 --output report.html`
+
+Note: Parameters must be set in the document before passing them to the render command.
+
+`quarto render report.qmd --to html`
+`quarto render report.qmd --to pdf`
+
+
+## Including files
+
+We can also include custom CSS, JavaScript, Html files. [See here](https://quarto.org/docs/reference/formats/html.html#includes)
+
+Example:
+
+| denotes that the value is a multi-line string.
+
+```
+---
+include-in-header: 
+  - text: |
+    <style> class {color: red;} </style>
+    <link rel = "stylesheet" href = "..."/>
+  - file: main.js
+  - style.css
+---
+```
+
+
+## Unified syntax
+
+Unified syntax for multiple output formats. Using pandoc syntax allows to easily convert to different formats. That is one reason to prefer the use of **:::** to denote blocks over the html <div> syntax.
+
+[Markdown basics](https://quarto.org/docs/authoring/markdown-basics.html)
+
+### Pandoc fenced divs
+
+Starts and ends with equal number of : (at least 3).
+
+Example:
+
+Class is used to style the block inside. The block's id is set to `id`.
+
+```
+::: {#id class}
+
+Block to modify with class
+
+:::
+```
+
+
+
+
+### Bracketed spans
+
+Inline styling. 
+  
+`[This is *some text*]{.class key="val"}˙`
+
+[This is *some text*]{.class key="val"}
+
+
+### Footnotes
+
+`This is some text^[This is a footnote]`
+
+This is some text^[This is a footnote]
+
+in format html: citations-hover:true
+in format html: footnotes-hover:true
+
+### Other predefined attributes
+
+.panel-tabset (HTML ONLY)
+.fragment (REVEALJS ONLY)
+
+
+### Figures, Layouts 
+
+[Link](https://quarto.org/docs/authoring/figures.html)
+
+- `layout-ncol=2`
+- `layout-nrow=2`
+- `layout="[[30,70], [100]]"` (two rows, first row 2 divs with flex-basis 30-70 and second row with one div with 100 flex basis)
+
+Below is an example using `:::{layout-ncol=2}` .
+
+::: {#id layout-ncol=2}
+left col
+
+right col
+:::
+
+
+And of using `:::{layout="[[30,70], [100]]"}` .
+
+::: {layout="[[30,70], [100]]"}
+top row-left col
+
+top row-right col
+
+Bottom row
+:::
+
+
+## Code
+
+- Hide code:
+
+```
+---
+execute:
+  echo: false
+---
+```
+
+  
+- Fold code:
+
+```
+---
+html:
+  code-fold:true
+  code-summary:"text"
+---
+```
+
+Or using hashpipe inside a specific chunk:
+
+```
+#| code-fold: true
+#| code-summary: "View source code"
+#| fig-align: "center"
+
+plot(1:50, 1:50)
+```
+
+```{r}
+#| code-fold: true
+#| code-summary: "View source code"
+#| fig-align: "center"
+
+plot(1:50, 1:50)
+```
+
+
+-Code tools:
+
+```
+---
+html:
+  code-tools: 
+    source: true
+    toggle: false
+    caption: none 
+---
+```
+
+
+- Code linking
+
+`downlit` package for linking source code functions to documentation. `#! code-link: true`?
+
+```
+---
+html:
+  code-link: true
+---
+```
+
+
+```{r}
+x <- 3
+y <- 2
+z <- x * y
+plot(1:50, 1:50)
+```
+
+
+- Code line numbers:
+
+```
+#| code-line-numbers: true
+x <- 3
+y <- 2
+z <- x * y
+# ....s
+```
+
+```{r}
+#| code-line-numbers: true
+x <- 3
+y <- 2
+z <- x * y
+# ....s
+```
+
+## Callout blocks
+
+[Documentation](https://quarto.org/docs/authoring/callouts.html)
+
+```
+::: {.callout-note}
+Note that there are five types of callouts, including:
+`note`, `warning`, `important`, `tip`, and `caution`.
+:::
+```
+
+::: {.callout-note}
+Note that there are five types of callouts, including:
+`note`, `warning`, `important`, `tip`, and `caution`.
+:::
+
+::: {.callout-tip}
+## Tip With Caption
+
+This is an example of a callout with a caption.
+:::
+
+::: {.callout-caution collapse="true"}
+## Expand To Learn About Collapse
+
+This is an example of a 'folded' caution callout that can be expanded by the user. You can use `collapse="true"` to collapse it by default or `collapse="false"` to make a collapsible callout that is expanded by default.
+:::
+
+## Aesthetics
+
+Quarto uses the bootstrap CSS library with 25 themes from bootswatch as default. You can add cusom css, scss, sass files:
+
+```
+---
+format:
+  html:
+    theme: [default, custom.scss]
+---
+```
+
+### Emojis
+
+---
+from: markdown+emoji
+---
+
+
+
+# REAVEALJS
+
+```
+---
+format:
+  revealjs
+---
+```
+
+## Tips
+
+-Alt+click to zoom in to a section
+
+- alt + + to zoom ?
+
+- Use {.fragment} to incrementally add content
+
+- Show the code first and then show the output as you move 
+
+`#| output-location:column-fragment`
+
+- Use level-2 headers `##` to define slides
+
+## Lists
+
+- Incremental lists
+
+```
+:::{.incremental}
+-
+-
+:::
+```
+
+- Non-incremental lists
+
+```
+:::{.nonincremental}
+-
+-
+:::
+```
+
+
+
+## Highlight code line number
+
+
+```
+#| code-line-numbers: "1, 3-4"
+x <- 3
+y <- 2
+z <- x * y
+# ....s
+```
+
+## Layout
+
+### Multiple columns
+
+```
+::::{.columns}
+
+:::{.column .fragment}
+One Column
+:::
+
+:::{.column .fragment}
+Another Column
+:::
+::::
+```
+
+::::{.columns}
+
+:::{.column .fragment}
+One Column
+:::
+
+:::{.column .fragment}
+Another Column
+:::
+::::
+
+
+### Absolute positioning
+
+Specify ditance from borders (left/right + top/bottom)
+
+```
+::: {.absolute top= right= bottom= left=}
+:::
+```
+
+## Aesthetics
+
+### Themes
+
+[Themes](https://quarto.org/docs/presentations/revealjs/themes.html)
+
+Quarto RevealJS presentations come with 10 built-in themes.
+
+```
+---
+title: "Title"
+format:
+  revealjs:
+    theme: [beige, custom.scss]
+---
+```
+
+
+### Logo
+```
+format:
+  revealjs:
+    logo: "logo.png"
+```
+
+### Footer
+
+```
+format:
+  revealjs:
+    footer: "Some footer"
+```
+
+One-off footer (only displayed on the corresponding slide):
+
+```
+:::{footer}
+one off
+:::
+```
+
+### Slide backgrounds
+
+Changing the background colour will change the text color automatically.
+
+- Background color:
+
+`## Slide Background {background-color="black",...}`
+
+- Background images:
+
+`## Slide Background {background-image=".." background-repeat="...",...}`
+
+- Background images:
+
+`## Slide Background {background-video=".." background-repeat="...",...}`
+
+
+### Stacking content
+
+Stack images on top of each other
+```
+:::{.r-stack .fragment}
+img1
+
+img2
+
+img3
+:::
+```
+
+
+
