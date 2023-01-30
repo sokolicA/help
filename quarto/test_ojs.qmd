@@ -10,7 +10,7 @@ execute:
 test <- palmerpenguins::penguins
 ojs_define(data = test)
 ```
-
+https://github.com/observablehq/inputs#Select
 
 ```{ojs}
 viewof bill_length_min = Inputs.range(
@@ -23,6 +23,12 @@ viewof islands = Inputs.checkbox(
     label: "Islands:"
   }
 )
+
+
+viewof size = Inputs.select(["Small", "Medium", "Large", "Small", "Medium"], {label: "Size", multiple: true})
+
+viewof sportAthletes = Inputs.select(d3.group(transpose(data), d => d.island))
+viewof sportAthletes2 = Inputs.checkbox(d3.group(transpose(data), d => d.island), {value: d3.group(transpose(data), d => d.island)})
 ```
 
 ```{ojs}
@@ -51,3 +57,7 @@ Plot.rectY(filtered,
   }
 )
 ```
+
+
+
+
