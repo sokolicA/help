@@ -103,7 +103,8 @@ Note that there is a hierarchy: if you have different configurations of the same
 
 ## Ignoring patterns
 
-You can and you should define which files should not be included in your repository. Usually you do not want to include data, outputs and other unnecessary files. This can be done by creating a .gitignore file and specifying the files or patterns to exlude, one per line.
+You can and you should define which files should not be included in your repository. Usually you do not want to include data, outputs and other unnecessary files.
+This can be done by creating a .gitignore file and specifying the files or patterns to exlude, one per line.
 
 Some examples:
 ```bash
@@ -115,6 +116,7 @@ You can also set system wide ignore patterns that will be applied to all local r
 ```bash
 git config core.excludesfile [file]
 ```
+
 
 ## Creating aliases
 
@@ -196,10 +198,17 @@ echo "# Testing Git" >> README.md
 If we then check the status with `git status`, we see that the file is shown in the Untracked files section. 
 It is part of the working directory but not part of the Git repository (or even tracked by Git).
 
-We can start tracking the file with the following command:
+We can start tracking (by adding it to the index) the file with the following command:
 ```
 git add README.md 
 ```
+
+The add command updates the index using the current content found in the working tree, to prepare the content staged for the next commit.
+Important notes: 
+- we also use the same add command after making any changes to the working tree, before running the commit command. This will add the modified files to the index.
+- add  can be performed multiple times before a commit. It only adds the content of the specified file(s) at the time the add command is run; if you want subsequent changes included in the next commit, then you must run git add again to add the new content to the index.
+- we can also add files that follow a pattern we have set to ignore in the .gitignore file. We do so with `git add -f [file]`.
+
 
 Checking the status shows that there are new ready to commit changed in the working directory. The README.md file is now tracked and staged.
 We can see the list of the tracked files with
@@ -229,15 +238,26 @@ git rm --cached README.md
 If we instead want to remove the file altogether we replace the --cached option with -f.
 
 
-### HEAD - TO DO
-https://stackoverflow.com/questions/2304087/what-is-head-in-git
 
-A head is simply a reference to a commit object. Each head has a name (branch name or tag name, etc). By default, there is a head in every repository called master. A repository can contain any number of heads. At any given time, one head is selected as the “current head.” This head is aliased to HEAD, always in capitals".
+### HEAD 
+
+From [StackOverflow](https://stackoverflow.com/questions/2304087/what-is-head-in-git):
+
+>A head is simply a reference to a commit object. Each head has a name (branch name or tag name, etc). By default, there is a head in every repository called master. 
+A repository can contain any number of heads. At any given time, one head is selected as the “current head.” This head is aliased to HEAD, always in capitals".
 
 Note this difference: a “head” (lowercase) refers to any one of the named heads in the repository; “HEAD” (uppercase) refers exclusively to the currently active head. This distinction is used frequently in Git documentation.
 
 The usual case is that the HEAD follows you and depends on the current branch. You can see the current HEAD with `cat .git/HEAD`.
-If the result of that shows a SHA-1 checksum it is considered that the HEAD is detached and does not follow you (the current branch).
+To see your current head you can also use the `git hist` alias we have defined. Try creating another branch and checking the command there. Then commit some new changes to the new branch and check the command again. Switch back to main and check the command there as well. Notice that the HEAD is actually following you, it does not point to a fixed commit.
+
+Note: If the result of that shows a SHA-1 checksum it is considered that the HEAD is detached and does not follow you (the current branch). We can force a detached HEAD with `git checkout --detach`. If we make new commits on this branch and check the hist command we will see that the HEAD is now ahead of main. The head will be "reattached" to the branch that we will checkout to.  
+
+Examples:
+
+```
+git diff commit HEAD # differences between commited files HEAD could be replaced with the HEAD commit id
+```
 
 
 
@@ -247,7 +267,7 @@ If the result of that shows a SHA-1 checksum it is considered that the HEAD is d
 It is important to note that the "same" file can be saved in different states at the same time. In fact there can be up to 4 "copies" or states of the same file:
 
 - in the working directory
-- in the staged area
+- in the staging area
 - in the local repository
 - in the remote repository
 
@@ -255,6 +275,19 @@ Changes done in the working directory are not automatically applied to the other
 
 ![Git stages and commands](git_stages.png) 
 
+
+### Git Index / Staging area
+
+As the Git book states:
+
+> The staging area is a file, generally contained in your Git directory, that stores information about
+what will go into your next commit. Its technical name in Git parlance is the “index”, but the phrase
+“staging area” works just as well.
+
+Putting it another way:
+The "index" holds a snapshot of the content of the working tree, and it is this snapshot that is taken as the contents of the next commit.
+
+[Check out this thread on SO for a more in depth look in the index.](https://stackoverflow.com/questions/4084921/what-does-the-git-index-contain-exactly)
 
 
 ### Inspecting and comparing changes 
@@ -308,7 +341,7 @@ The `diff` command is also used to compare branches, which we will explore in th
 
 
 
-### Postopning changes - TO DO 
+### Postponing changes 
 
 Check [git stash](https://git-scm.com/docs/git-stash) 
 
@@ -321,8 +354,10 @@ git stash # same as git stash push
 ```
 
 Notes:
-- You can also stash only certain files by listing them after the command. Note that in this case you will have to add the push option.
-- untracked files can be stashed away by adding the `--include-untracked` option.
+- You can also stash only certain files by listing them after the command or even the whole folder (`git stash push folder/*`). Note that in this case you will have to add the push option.
+- Untracked files can be stashed away by adding the `--include-untracked` option.
+- You can stash only staged files by adding the `--staged` option.
+
 
 To reiterate: this will save your modifications and revert the working directory to the HEAD. 
 
@@ -336,6 +371,11 @@ To inspect the previous stash you can run `git stash show 1`. Replace with 0 to 
 This means the last stashed changes will be the first to be restored with the `pop` option.
 You can however pop a stash of your choosing by adding the refernce to the stash. `git stash pop 1` to apply and drop the previous stash whilst preserving the last stash in the stashed area.
 
+Use cases:
+- interrupted workflow (stash changes, do the urgent task, pop the changes back in);
+- unable to pull remote due to conflicting changes (stash conflicts, pull, pop back in);
+- save unrelated changes for future use (stage changes and stash staged);
+- testing partial commits (check the link).
 
 
 
@@ -377,7 +417,7 @@ By running `git pull` we will immediately merge the remote repository with our w
 
 After adjusting for the differences (merging the remote and local workspace) we can push our changes to the remote with `git push origin main`.
 
-## merge or rebase?
+## merge or rebase? TO DO
 
 
 
@@ -385,7 +425,7 @@ After adjusting for the differences (merging the remote and local workspace) we 
 
 ### Larger changes
 
-
+### Branching - TO DO
 
 
 
