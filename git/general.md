@@ -107,7 +107,7 @@ You can and you should define which files should not be included in your reposit
 This can be done by creating a .gitignore file and specifying the files or patterns to exlude, one per line.
 
 Some examples:
-```bash
+```
 logs/ # Ignore everything in the logs folder
 *.ext # Ignore all .ext files
 ```
@@ -162,7 +162,13 @@ We can track (and stage) the file by running
 git add [file]
 ```
 
-Now the repository started tracking the file and also staged the file. The file is still not included in the repository. We first have to commit the file:
+Now Git has started tracking the file in this working directory and also staged/indexed the file.
+We can see the list of the tracked files with
+```
+git ls-files
+```
+
+The file is still not included in the local repository. We first have to commit the file:
 ```
 git commit -m "message with information about commit"
 ```
@@ -175,12 +181,13 @@ git commit -am "all in one"
 We could have skipped the `-m` option in both of the two cases. In that case the default Git editor would open for you to write a message about changes.
 
 
-We usually have a third, remote repository, which can hold yet another state of the directory.
+We usually have remote repository, which can hold yet another state of the directory.
 We send a copy of the local repository (aliased as main) to the remote repository (aliased as origin) by running
 
 ```
 git push origin main
 ```
+While not recommended, we can push untracked file by passing the `-u` option.
 
 We can check the status of the repository with
 ```
@@ -206,15 +213,10 @@ git add README.md
 The add command updates the index using the current content found in the working tree, to prepare the content staged for the next commit.
 Important notes: 
 - we also use the same add command after making any changes to the working tree, before running the commit command. This will add the modified files to the index.
-- add  can be performed multiple times before a commit. It only adds the content of the specified file(s) at the time the add command is run; if you want subsequent changes included in the next commit, then you must run git add again to add the new content to the index.
+- add can be performed multiple times before a commit. It only adds the content of the specified file(s) at the time the add command is run; if you want subsequent changes included in the next commit, then you must run git add again to add the new content to the index.
 - we can also add files that follow a pattern we have set to ignore in the .gitignore file. We do so with `git add -f [file]`.
 
-
 Checking the status shows that there are new ready to commit changed in the working directory. The README.md file is now tracked and staged.
-We can see the list of the tracked files with
-```
-git ls-files
-```
 
 If we wanted to unstage the file prior to commiting we can do so with 
 
@@ -296,9 +298,11 @@ The "index" holds a snapshot of the content of the working tree, and it is this 
 We have already created an alias (a shortcut) to see the history of the repository. We have used the `log` command, which in it's basic form returns the history of the repository in reverse chronological order. For each commit we see the SHA-1 checksum, the author, date and message. 
 To navigate down the output press ENTER. The end of the output will show END in the command line. You can press `q` to exit the log interface at any point.
 
-The history usually is not enough. We also want to see the changes that were introduced with each commit. This is usually done with `git diff`. There are multiple uses of the diff command which we will mention briefly in the following subsections.
+The history usually is not enough. We also want to see the changes that were introduced with each commit.
+This is usually done with `git diff`. There are multiple uses of the diff command which we will mention briefly in the following subsections.
 
-History can be also seen with the log command, if the add the -p option, which will show the history and the changes for all commits or just for a selected number of commits by adding -[number], as shown below:
+History can be also seen with the log command, if the add the -p option, 
+which will show the history and the changes for all commits or just for a selected number of commits by adding -[number], as shown below:
 
 ```
 git log -p -1 # (-p or --patch)
@@ -310,9 +314,8 @@ Another useful use case is to see the history of a specified file. The history o
 git log [file]  # add -p before [file] to also show the differences 
 ```
 
-Note that if we have at any point changed the name of the file, we will not see the commits for changes with the previous name. We can however add the `--follow` option, which will show the commits that changed the file even across renames.
-
-
+Note that if we have at any point changed the name of the file, we will not see the commits for changes with the previous name. 
+We can however add the `--follow` option, which will show the commits that changed the file even across renames.
 
 There are many other options that can be passed to the command, for example:
 - we can limit the timeframe of the history by adding --since=2days ago, --before=[date], --after=[date],...
@@ -328,10 +331,23 @@ git diff commit1 commit2
 
 where commit1 and commit2 are SHA-1 checksums or abbreviated SHA (as printed with our alias). If there are differnces between these two commits, the command returns what's new in commit2 (+, in green) and what is removed with commit2 (-, in red).
 
-#### Differences between local workspace and local repository
+#### Differences between working directory and the index/staging area 
 
-We can see the differences by runing `git diff` without passing any other arguments. For each file with changes, this command will output the differences between the local file and the file stored in the local repository. We can focus on a single file by adding the file name: `git diff [file]`.
-Note that this will not show differences between staged files and files in the local repository.
+We can see the differences by runing `git diff` without passing any other arguments. 
+For each file with changes, this command will output the differences between the local file and the file stored in the index. 
+We can focus on a single file by adding the file name: `git diff [file]`.
+Note that this will not show differences between staged files and files in the index.
+
+#### Differences between the staged area and the local repository
+
+[How to Show the Changes which Have Been Staged in Git](https://www.w3docs.com/snippets/git/how-to-show-the-changes-which-have-been-staged.html) 
+
+We can compare differences between the staged file(s) and the files in the local repository by passing the `--cached` (`--staged` also works) option to the `diff` command.
+We can also pass the `--verbose` (or `-v` for short) option to the `status` command in order to see the status and the staged changes in the same output.
+
+#### Differences between the working directory and the local repository
+
+The differences can be analyzed with the `git diff HEAD` command.
 
 #### Differences between branches
 
@@ -390,6 +406,40 @@ We can then stage the file with the `git add README.md` command (changes are now
 And then we commit the changes to the local repository. We are now ahead of origin/main. 
 
 
+#### Partial commits
+
+[Partial commits on SO](https://stackoverflow.com/questions/1085162/commit-only-part-of-a-files-changes-in-git) 
+
+This option is helpful in the event we have made many changes that should be really part of different commits.
+This lessens the burdens of possible bugs that might occur in the changes. 
+
+We can make partial commits of a file by simply adding the `--patch` (`-p`) option to the `add` command, aswell as specifying the file name:
+```
+git add -p file_name
+```
+
+This will open a step-by-step prompt that will iterate over pieces (so called *hunks*) of code. The prompt will ask us to select one of multiple options about
+what to do with the current hunk. These options differ by hunks and you can see the available options for the current hunk in the array prompt.
+The descriptions are shown by pressing `?`:
+
+```
+y - stage this hunk
+n - do not stage this hunk
+q - quit; do not stage this hunk or any of the remaining ones
+a - stage this hunk and all later hunks in the file
+d - do not stage this hunk or any of the later hunks in the file
+j - leave this hunk undecided, see next undecided hunk
+J - leave this hunk undecided, see next hunk
+g - select a hunk to go to
+/ - search for a hunk matching the given regex
+e - manually edit the current hunk
+? - print help
+```
+
+After going over all the hunks you should check you have staged the correct changes with `git diff --staged`. 
+Another helpful command is `git reset -p` which can unstage mistakenly added hunks.
+
+
 ### Collaborating
 
 If there are other persons working with the repository you should first check if there are any changes commited by other members of the team:
@@ -404,18 +454,18 @@ Go to the remote repository, make some changes in a file and then commit the cha
 If we straight away check the status of the main branch we won't notice any changes.  
 In fact we have to fetch the remote repository first. Checking the status reveals that we are actually behind the remote branch by one commit.
 Depending on the changes we might be able to do a fast-forward merge/pull or we might have to resolve conflicting changes (this will be discussed later).
-What is important is that the changes are not yet applied to your local file. If we wanted them to be applied we can then merge the fetched changes with the local workspace:
+What is important is that the changes are not yet applied to your local file. If we wanted them to be applied we can then merge the fetched changes with the working directory:
 ```
 git merge
 ```
-We have now updated our local workspace with the remote changes.
+We have now updated our working directory with the remote changes.
 
 Example git pull:
 Do some other non-conflicting changes in the remote repository. 
 By running `git pull` we will immediately merge the remote repository with our workspace.
 
 
-After adjusting for the differences (merging the remote and local workspace) we can push our changes to the remote with `git push origin main`.
+After adjusting for the differences (merging the remote and working directory) we can push our changes to the remote with `git push origin main`.
 
 ## merge or rebase? TO DO
 
