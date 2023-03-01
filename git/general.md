@@ -262,6 +262,40 @@ git diff commit HEAD # differences between commited files HEAD could be replaced
 ```
 
 
+## Git tags - tagging commits
+
+[Git tags](https://git-scm.com/book/en/v2/Git-Basics-Tagging) 
+You can mark important commits such as releases of new versions by tagging them.
+
+List all the tags (in alphabetical order) in the repository with `git tag`. 
+List only specific tags by running `git tag -l "*wildcard*"`. (`-l` is the list option) 
+
+Say the last commit marks the second version of the product. You can tag the commit with `git tag -a v2 -m "new release"`.
+The `-a` option specifies that the tag is an annotated tag, which is a more detailed tag that contains information about the tagger,
+date and have a message that is passed with the later `-m` option. Forgetting to pass the later will open the default editor for you to pass a message.
+Without specifying `-a` the tag is considered a lightweight tag without any other information. 
+
+If you forgot to tag a commit in the past you can still add a tag to the specified commit by passing the commit checksum.
+`git tag -a v1.2 [checksum] -m "message"`.
+
+### Checking tags
+
+You can check information about specific tags along with the changes the commit introduced with `git show [tag]`. 
+You will notice that for `lightweight` tags there will be no extra information about the tag displayed.
+
+### Sharing tags in the remote repository
+
+By default, the git `git push` will not transfer tags to remote servers.
+To do so you will have to explicitly push the desired tag by passing the tag name `git push origin [tag]`.
+Passing multiple tags at once is done by providing the `--tags` option to the push command.
+On GitHub it is now more straightforward to open the repository at a certain commit by selecting the desired tag.
+
+### Deleting tags
+
+Deleting tags from the local repository is simple and is done by passing the `git tag` command the `-d` option before the tag name we wish to delete: `git tag -d [tag]`.
+
+Note that you will also have to explicitly delete the tag from the remote repository with `git push origin --delete [tag]`.
+
 
 
 ## Moving forward - Making, inspecting, applying changes
