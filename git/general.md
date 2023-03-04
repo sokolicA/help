@@ -297,7 +297,6 @@ Deleting tags from the local repository is simple and is done by passing the `gi
 Note that you will also have to explicitly delete the tag from the remote repository with `git push origin --delete [tag]`.
 
 
-
 ## Moving forward - Making, inspecting, applying changes
 
 It is important to note that the "same" file can be saved in different states at the same time. In fact there can be up to 4 "copies" or states of the same file:
@@ -474,6 +473,39 @@ After going over all the hunks you should check you have staged the correct chan
 Another helpful command is `git reset -p` which can unstage mistakenly added hunks.
 
 
+### Merging
+
+[Git merge](https://git-scm.com/docs/git-merge) 
+
+Git merge incorporates changes from another named commit into the current branch. It joins two development histories together.
+
+For example when adding a new feature we would create a new feature branch to develop the new feature.
+The commits on the new branch after its creation will differ from the commits on the main branch.
+There will be different development histories from this point forward. After finishing and testing the new feature,
+we have to incorporate the changes we've made on the feature branch to the main branch.
+
+This is done with the `git merge [feature]` command (while being in the original branch), 
+which will replay the changes (all commits) made on `[feature]` since it diverged from the branch.
+It is advised that you have no uncommited changes when using the merge command as it may result in conflicts and possibly the need
+to abort the merge which may not be able to completely restore the state of uncommitted changes. 
+This may result as a new commit on the original branch, depending on the merge type (no commit for fast-forward).
+
+Fast-Forward merge is a soft merge that will happen when current branch head is an ancestor of the named commit and there are no conflicts.
+In such cases the history of both streams is the same and does not have to be stored in a new merge commit.
+
+You can abort the merge with `git merge --abort`.
+
+
+
+#### Conflicts
+
+The merging can result in conflicts, which basically means that there are conflicting changes done in both branches and Git 
+can not decide which to use. This can happen if the same hunk has different changes in the two branches.
+
+You will have to resolve the conflicts. The conflicting parts will be marked in the file with (<<<< changes on main ===== changes on feature >>>>).
+Leave the part you want to keep and delete the rest. You can also keep both (just add the feature on the line below).
+Then run `git add [file with resolved conflicts]`. And finally commit with a message to conclude merge. 
+
 ### Collaborating
 
 If there are other persons working with the repository you should first check if there are any changes commited by other members of the team:
@@ -518,3 +550,15 @@ After adjusting for the differences (merging the remote and working directory) w
 In the previous section we went forward with new changes. We can also revert changes and restore the file to a previous version.
 
 https://git-scm.com/book/en/v2/Git-Basics-Undoing-Things
+
+
+
+
+### Using tags
+
+There are two useful commands that allow us to go back in time to a tagged commit.
+Let's say in some point in time we released the first major update and tagged it with `git tag -a v2.0 -m "Second version"`.
+At some later point, after having made new minor releases, we realize that they started turning the project in a wrong direction.
+
+1) We can create a new branch that will continue from the tagged commit with `git checkout -b [branchName] [tag]`.
+2) We can revert/reset the main branch using the `git reset --hard [tag]` command.
