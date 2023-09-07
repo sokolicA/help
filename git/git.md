@@ -593,3 +593,20 @@ At some later point, after having made new minor releases, we realize that they 
 
 1. We can create a new branch that will continue from the tagged commit with `git checkout -b [branchName] [tag]`.
 2. We can revert/reset the main branch using the `git reset --hard [tag]` command.
+
+## Git Blame
+
+[Docs](https://git-scm.com/docs/git-blame) or `git blame -h`.
+
+Show what revision and author last modified each line of a file.
+
+```
+git blame [file]
+```
+
+Useful options:
+
+- Specify line range with -L: `git blame -L 1,20 [file]` will only show information for the first 20 lines of the file. It is also possible to define the start and end locations using regex expressions.
+
+- Specify time range with --since: `git blame --since=2.weeks -- [file]` will prepend lines that were last changed more that two weeks ago with **^**.
+  In PowerShell you can filter changes that were made in the last two weeks with: `git blame --since=2.weeks -- [file] | select-string '^(?!\^).*' `.
