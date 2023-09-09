@@ -358,8 +358,9 @@ We can however add the `--follow` option, which will show the commits that chang
 
 There are many other options that can be passed to the command, for example:
 
-- we can limit the timeframe of the history by adding --since=2days ago, --before=[date], --after=[date],...
+- we can limit the timeframe of the history by adding --since=2days.ago, --before=[date], --after=[date],...
 - we can show just the statistics of the changes to the file with --stat (how many additions, deletions,...)
+- we can show just the statistics of the changes of a specific branch: `git log [branch]`.
 
 Further options can be explored in [commit history](https://git-scm.com/book/en/v2/Git-Basics-Viewing-the-Commit-History).
 
@@ -486,31 +487,29 @@ This will not create a new commit and will instead modify the previous one. The 
 
 ### Combining multiple commits into a single commit (squashing)
 
-While developing new features it is recommended to frequently test and commit changes. Many of such commits might be unnecessary after the development is done and should better be combined into a single commit in order to keep the repository clean.
+While developing new features it is recommended to frequently test and commit changes. Many of such commits might be unnecessary after the development is done and might be better combined into a single commit in order to keep the repository cleaner.
 
-We can do so with "squashing" the commits.
-
-There are multiple ways we can do so.
+We can do so with a technique usually called "squashing". There is no direct `git squash` command and there are multiple ways to perform it.
 
 #### Rebasing as a single commit
 
-The first option is to use rebasing. We will interactively rebase the repository by a certain number of commits **N**.
+The first option is to use rebasing. We will interactively (specified with the `-i` option) rebase the repository by a certain number of commits **N**.
 
 ```
 git rebase -i HEAD~N
 ```
 
-The default git editor will open and will display the commits with **pick** at the start. To squash the commits into the last commit we have to change **pick** to **squash** in every line but the first. We are then asked for the commit message with the combined commit messages as default.
+The default git editor will open and will display the commits with **pick** at the start. To squash all commits into a single (the first) commit we have to change **pick** to **squash** in every line but the first. We are then asked for the commit message with the combined commit messages as default.
 
 #### Merging as a single commit
 
-Another option is to merge all commits in s branch as a single commit. We can do so with
+Another option is to merge all commits in the feature branch as a single commit. We can do so with
 
 ```
 git merge <branch> --squash
 ```
 
-Note that this will add the changes to the staged area instead of creating an automatic commit. You can then commit the changes as usual.
+Note that this will add all the changes to the staged area instead of creating an automatic commit (as is the case with the normal fast-forward merge). You can then commit the changes as usual. The one by one commits may still kept in the feature branch.
 
 ### Merging
 
