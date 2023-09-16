@@ -394,6 +394,30 @@ The differences can be analyzed with the `git diff HEAD` command.
 
 The `diff` command is also used to compare branches, which we will explore in the branching section.
 
+### Reference logs
+
+> Reference logs, or [reflogs](https://git-scm.com/docs/git-reflog), record when the tips of branches and other references were updated in the local repository. Reflogs are useful in various Git commands, to specify the old value of a reference. For example, HEAD@{2} means "where HEAD used to be two moves ago", master@{one.week.ago} means "where master used to point to one week ago in this local repository", and so on.
+
+**Important note:** In some shells (like PowerShell) the command `git diff HEAD@{2}` does not work. In such cases you can try the following options: 'HEAD@{2}', HEAD@'{2}' and HEAD~2.
+
+Reflogs have many uses cases: git checkout, git reset, and git merge are examples of some common git commands that accept references as parameters.
+
+So far I have been referring to specific comits using indices (1,2,...). We can, however, leverage other information stored in reflog entries in order to select (point to) specific commits. For example each reflog entry has a timestamp attached to it. It is therefore possible to filter the reflog entries by time. Commonly used time qualifiers are:
+
+@{0}
+@{X.minutes.ago}
+@{X.hour(s).ago}
+@{X.day(s).ago}
+@{X.weeks.ago}
+@{X.years.ago}
+@{today}
+@{2023-09-16 01:01:01}
+@{1.day.23.hours.ago}
+
+From the last example we can see that the time qualifiers can be combined. Both plural and singular forms of these time qualifiers are accepted (e.g. 1.minute.ago, 2.minutes.ago). They can also be combined with a specific branch `my_branch` (e.g. `git reflog show my_branch@{3.days.ago}`).
+
+The command `git reflog` has three main subcommands "show", "expire" and "delete". Here I will mainly focus on the "show" subcommand, which is also used as default when typing just `git reflog`. `git reflog show` is an alias for git log -g --abbrev-commit --pretty=oneline. This will show the reference log for the HEAD of the current branch by default. Reflogs for a certain branch are retrieved with `git reflog show [branch]`. Adding the `-all` option includes the reflogs for all references.
+
 ### Postponing changes
 
 Check [git stash](https://git-scm.com/docs/git-stash)
