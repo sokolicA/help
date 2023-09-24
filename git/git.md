@@ -299,8 +299,10 @@ You will notice that for `lightweight` tags there will be no extra information a
 
 By default, the git `git push` will not transfer tags to remote servers.
 To do so you will have to explicitly push the desired tag by passing the tag name `git push origin [tag]`.
-Passing multiple tags at once is done by providing the `--tags` option to the push command.
-On GitHub it is now more straightforward to open the repository at a certain commit by selecting the desired tag.
+Passing all tags at once is done by providing the `--tags` option to the push command. Use of [this option should be avoided](https://stackoverflow.com/questions/5195859/how-do-you-push-a-tag-to-a-remote-repository-using-git) due to the fact that it pushes all tags, which might include old or bad tags.
+My preferred way is to automatically push my tags by specifiyng the `--follow-tags` option. This pushes all the refs that would be pushed without this option, and also **pushes annotated tags** in refs/tags that are missing from the remote but are **pointing at commits that are reachable** from the refs being pushed.
+
+This can be specified by setting a configuration variable (see [Configuration files](#configuration-files)). `git config --global push.followTags true` will set the variable `push.followTags` to be true in the global context.
 
 ### Deleting tags
 
