@@ -71,7 +71,7 @@ ssh -T git@github.com
 ssh -v -T git@github.com
 ```
 
-## Setting up our configuration file(s)
+## Configuration files
 
 Once the installation is completed and we have connected to GitHub we should set some settings such as your name and email. We will use the `--global` option to set our information so that it will be used in all of our local repositories.
 
@@ -89,14 +89,16 @@ Our configuration is stored in `.gitconfig` files. There are three levels of con
 
 We usually have 1 system and global .gitconfig and multiple local configuration files. We can see the content and location of our files by running:
 
-```Bash
+```
 git config --list --show-origin
 ```
 
 And the specific configuration can be found by specifying the level:
 
 ```
+git config --list --system
 git config --list --global
+git config --list --local
 ```
 
 Note that there is a hierarchy: if you have different configurations of the same thing, the one in the lowest level will be applied. So if you have specified x as your name in the global config file and y in your local repository, then y will be used as your name in that repository.
