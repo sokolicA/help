@@ -105,8 +105,10 @@ Note that there is a hierarchy: if you have different configurations of the same
 
 ## Ignoring patterns
 
-You can and you should define which files should not be included in your repository. Usually you do not want to include data, outputs and other unnecessary files.
-This can be done by creating a .gitignore file and specifying the files or patterns to exlude, one per line.
+![Documentation](https://git-scm.com/docs/gitignore)
+
+You can (and you should) define which files should not be included in your repository. Usually you do not want to include data, outputs and other unnecessary files.
+This can be done by creating a .gitignore file and specifying the files or patterns to exlude, one per line. Documentation states that all paths are relative to the `.gitignore` file.
 
 Some examples:
 
@@ -120,6 +122,17 @@ You can also set system wide ignore patterns that will be applied to all local r
 ```bash
 git config core.excludesfile [file]
 ```
+
+### Wildcards
+
+Single (*) and double (**) asterisks are used as wildcards when specifying patters for file selection.
+
+- Single asterisk matches any sequence of characters (except a slash). Example: `*.ext` matches all files with the extension `.ext` in the repository. 
+
+- Double asterisks match directories and subdirectories recursively. Example: `**/foo` matches file or directory foo that is anywhere in the repository and `foo/**/bar` matches foo/bar, foo/baz/bar.
+
+See the provided documentation for more examples and a more in-depth look.
+
 
 ## Creating aliases
 
@@ -205,6 +218,8 @@ We can check the status of the repository with
 ```
 git status
 ```
+
+
 
 ## Adding files to the repository
 
